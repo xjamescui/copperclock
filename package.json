@@ -35,5 +35,8 @@
 		"test:unit": "vitest",
 		"test": "npm run test:unit -- --run"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"date-fns": "^4.1.0"
+	}
 }

@@ -1,11 +1,15 @@
 import type { Config } from 'tailwindcss';
 
 export default {
-	content: ['./src/**/*.{html,js,svelte,ts}'],
+  content: ['./src/**/*.{html,js,svelte,ts}'],
 
-	theme: {
-		extend: {}
-	},
+  theme: {
+    extend: {
+      colors: {
+        background: 'var(--pico-background-color)'
+      }
+    }
+  },
 
-	plugins: []
+  plugins: []
 } satisfies Config;
