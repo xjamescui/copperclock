@@ -1,7 +1,8 @@
 import fs from 'fs/promises';
 import type { ClockData } from '../model';
+import path from 'path';
 
-const DATA_FILE_PATH = 'src/lib/server/data.json';
+const DATA_FILE_PATH = path.resolve('src/lib/server/data.json');
 
 export async function readClockData() {
   const fileContent = await fs.readFile(DATA_FILE_PATH, 'utf-8');
