@@ -1,17 +1,19 @@
 import fs from 'fs/promises';
 import type { ClockData } from '../model';
-import path from 'path';
 
-const DATA_FILE_PATH = path.resolve('src/lib/server/data.json');
+const DATA_FILE_PATH = '/src/lib/server/data.json';
 
 export async function readClockData() {
-  const fileContent = await fs.readFile(DATA_FILE_PATH, 'utf-8');
+  const fileContent = await fs.readFile(
+    process.cwd() + DATA_FILE_PATH,
+    'utf-8'
+  );
   return JSON.parse(fileContent, jsonParseReviver) as ClockData;
 }
 
 export async function saveClockData(data: ClockData) {
   const json = JSON.stringify(data);
-  await fs.writeFile(DATA_FILE_PATH, json);
+  await fs.writeFile(process.cwd() + DATA_FILE_PATH, json);
 }
 
 // Custom reviver function to convert date strings to Date objects
