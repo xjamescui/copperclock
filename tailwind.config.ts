@@ -1,15 +1,14 @@
 import type { Config } from 'tailwindcss';
+import daisyui from 'daisyui';
+import typography from '@tailwindcss/typography';
 
 export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
 
-  theme: {
-    extend: {
-      colors: {
-        background: 'var(--pico-background-color)'
-      }
-    }
+  daisyui: {
+    prefix: 'dsy-',
+    logs: false,
+    themes: ['bumblebee']
   },
-
-  plugins: []
+  plugins: [daisyui, typography]
 } satisfies Config;

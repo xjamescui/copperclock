@@ -3,11 +3,14 @@
 	"version": "0.0.1",
 	"devDependencies": {
 		"@eslint/compat": "^1.2.3",
+		"@supabase/supabase-js": "^2.47.12",
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/adapter-vercel": "^5.5.2",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^4.0.0",
+		"@tailwindcss/typography": "^0.5.16",
 		"autoprefixer": "^10.4.20",
+		"daisyui": "^4.12.23",
 		"eslint": "^9.7.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.36.0",
@@ -20,7 +23,7 @@
 		"tailwindcss": "^3.4.9",
 		"typescript": "^5.0.0",
 		"typescript-eslint": "^8.0.0",
-		"vite": "^5.4.11",
+		"vite": "^6.0.0",
 		"vitest": "^2.0.4"
 	},
 	"private": true,
@@ -33,7 +36,8 @@
 		"format": "prettier --write .",
 		"lint": "prettier --check . && eslint .",
 		"test:unit": "vitest",
-		"test": "npm run test:unit -- --run"
+		"test": "npm run test:unit -- --run",
+		"typegen": "supabase gen types typescript --project-id fznpklxcsqgkiabzipiv > src/lib/models/gen/database-generated.types.ts"
 	},
 	"type": "module",
 	"dependencies": {

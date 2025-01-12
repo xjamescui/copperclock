@@ -1,11 +1,8 @@
-export interface ClockData {
-  lastFedDatetime: Date;
-  lastPeedDatetime: Date;
-  lastPoopedDatetime: Date;
-  lastExercisedDatetime: Date;
-}
+import type { Enums, Tables } from './models/gen/database-generated.types';
 
-export type PetActivity = 'pee' | 'poop' | 'food' | 'exercise';
+export type ClockData = Tables<'time_record'>;
+export type PetActivity = Enums<'pet_activity'>;
+
 export const petActivityDisplayName = (activity: PetActivity) => {
   switch (activity) {
     case 'pee':
