@@ -13,7 +13,7 @@
       <li>
         {#if currentUser}
           <details class="dsy-dropdown dsy-dropdown-end">
-            <summary> Hello, {currentUser.email} </summary>
+            <summary>{currentUser.email}</summary>
             <ul
               class="dsy-menu dsy-dropdown-content z-[1] mt-2 w-52 rounded-box bg-base-100 p-2 shadow">
               <li><a href="/logout">Logout</a></li>
