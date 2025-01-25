@@ -19,7 +19,8 @@
 
   const open = $state(true);
   const activityName = petActivityDisplayName(clock.activity);
-  const nowValue = format(new Date(), 'yyyy-MM-dd HH:mm');
+  const now = new Date();
+  const nowValue = format(now, 'yyyy-MM-dd HH:mm');
 
   const onCancel = () => {
     dialog.close();
@@ -45,6 +46,7 @@
           </p>
         {/if}
         <input hidden name="clockId" value={clock.id} />
+        <input hidden name="tzOffsetMinutes" value={now.getTimezoneOffset()} />
         <input
           type="datetime-local"
           class="dsy-input dsy-input-bordered"

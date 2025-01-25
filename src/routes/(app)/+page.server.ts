@@ -3,6 +3,7 @@ import { failWithMessage } from '$lib/server/utils';
 import { redirect, type Actions } from '@sveltejs/kit';
 import { supabase } from '$lib/server/supabase';
 import type { PageServerLoad } from './$types';
+import { addMinutes } from 'date-fns';
 
 export const load: PageServerLoad = async () => {
   const { data, error } = await supabase
@@ -24,6 +25,7 @@ export const actions = {
   default: async ({ request }) => {
     const data = await request.formData();
     const clockId = Number(data.get('clockId'));
+    const clientTimezoneOffset = Number(data.get('tzOffsetMinutes'));
     const datetime = data.get('eventDatetime')?.toString();
 
     if (!clockId) {
@@ -36,9 +38,16 @@ export const actions = {
       );
     }
 
+    let serverDate = new Date(datetime);
+    if (serverDate.getTimezoneOffset() !== clientTimezoneOffset) {
+      // server should always be in UTC so its timezone offset should be 0.
+      // We don't need to do anything with server timezone offset.
+      serverDate = addMinutes(serverDate, clientTimezoneOffset);
+    }
+
     const { error } = await supabase
       .from('time_record')
-      .update({ latest_datetime: new Date(datetime).toISOString() })
+      .update({ latest_datetime: serverDate.toISOString() })
       .eq('id', clockId);
 
     if (error) {
