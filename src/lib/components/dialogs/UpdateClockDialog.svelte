@@ -54,7 +54,7 @@
         <footer class="flex justify-end gap-x-5">
           <input
             type="button"
-            class="dsy-btn"
+            class="dsy-btn dsy-btn-outline"
             onclick={() => onCancel()}
             value="Cancel" />
           <input type="submit" class="dsy-btn dsy-btn-primary" value="Update" />

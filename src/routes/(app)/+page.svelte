@@ -26,9 +26,7 @@
     </div>
     <div class="flex justify-between gap-x-5">
       <ActivityClockDisplay activity={clock.activity} {datetime} />
-      <button
-        class="dsy-btn dsy-btn-primary self-center"
-        onclick={() => onClickUpdate(clock)}>
+      <button class="dsy-btn self-center" onclick={() => onClickUpdate(clock)}>
         Update
       </button>
     </div>
