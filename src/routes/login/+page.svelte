@@ -1,22 +1,23 @@
 <script lang="ts">
   import { page } from '$app/state';
   import logo from '$lib/assets/copperclock-logo.webp';
+  import ErrorBanner from '$lib/components/ErrorBanner.svelte';
 </script>
 
 <div class="flex items-center justify-center py-20">
-  <div class="flex flex-col items-center">
+  <div class="flex flex-col items-center gap-y-5">
     <div class="dsy-avatar">
       <div class="w-24 rounded-full">
         <img src={logo} alt="logo" />
       </div>
     </div>
-    <div class="prose my-5"><h3>Sign In</h3></div>
+    <div class="prose mt-5"><h3>Sign In</h3></div>
     {#if !!page.form?.errorMsg}
-      <p class="rounded border border-red-300 bg-red-100 p-2 text-red-500">
+      <ErrorBanner>
         Error: {page.form.errorMsg}
-      </p>
+      </ErrorBanner>
     {/if}
-    <form method="POST" class="flex flex-col gap-y-5">
+    <form method="POST" class="flex w-full flex-col gap-y-5">
       <input
         type="text"
         name="email"
