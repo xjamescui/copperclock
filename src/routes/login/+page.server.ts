@@ -14,7 +14,7 @@ export const load: PageServerLoad = async () => {
 export const actions: Actions = {
   default: async ({ request }) => {
     const formData = await request.formData();
-    const email = formData.get('email')?.toString();
+    const email = formData.get('email')?.toString().trim();
     const password = formData.get('password')?.toString();
 
     if (!email || !password) {
