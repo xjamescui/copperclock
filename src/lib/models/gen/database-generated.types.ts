@@ -15,24 +15,35 @@ export type Database = {
           created_at: string
           id: number
           latest_datetime: string
+          update_by_user_id: string | null
         }
         Insert: {
           activity: Database["public"]["Enums"]["pet_activity"]
           created_at?: string
           id?: number
           latest_datetime?: string
+          update_by_user_id?: string | null
         }
         Update: {
           activity?: Database["public"]["Enums"]["pet_activity"]
           created_at?: string
           id?: number
           latest_datetime?: string
+          update_by_user_id?: string | null
         }
         Relationships: []
       }
     }
     Views: {
-      [_ in never]: never
+      time_record_view: {
+        Row: {
+          activity: Database["public"]["Enums"]["pet_activity"] | null
+          email: string | null
+          id: number | null
+          latest_datetime: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       [_ in never]: never

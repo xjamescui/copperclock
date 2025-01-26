@@ -8,7 +8,7 @@ export default {
   daisyui: {
     prefix: 'dsy-',
     logs: false,
-    themes: ['bumblebee']
+    themes: ['bumblebee', 'dark']
   },
   plugins: [daisyui, typography]
 } satisfies Config;

@@ -4,10 +4,11 @@ import { redirect, type Actions } from '@sveltejs/kit';
 import { supabase } from '$lib/server/supabase';
 import type { PageServerLoad } from './$types';
 import { addMinutes } from 'date-fns';
+import { getCurrentUser } from '$lib/server/auth';
 
 export const load: PageServerLoad = async () => {
   const { data, error } = await supabase
-    .from('time_record')
+    .from('time_record_view')
     .select('*')
     .order('activity', { ascending: true })
     .returns<ClockData[]>();
@@ -47,7 +48,10 @@ export const actions = {
 
     const { error } = await supabase
       .from('time_record')
-      .update({ latest_datetime: serverDate.toISOString() })
+      .update({
+        latest_datetime: serverDate.toISOString(),
+        update_by_user_id: (await getCurrentUser())?.id
+      })
       .eq('id', clockId);
 
     if (error) {

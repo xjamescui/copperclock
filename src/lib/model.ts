@@ -1,9 +1,9 @@
 import type { Enums, Tables } from './models/gen/database-generated.types';
 
-export type ClockData = Tables<'time_record'>;
+export type ClockData = Tables<'time_record_view'>;
 export type PetActivity = Enums<'pet_activity'>;
 
-export const petActivityDisplayName = (activity: PetActivity) => {
+export const petActivityDisplayName = (activity?: PetActivity | null) => {
   switch (activity) {
     case 'pee':
       return 'Pee';
@@ -14,11 +14,13 @@ export const petActivityDisplayName = (activity: PetActivity) => {
     case 'exercise':
       return 'Exercise';
     default:
-      return 'Unrecognized Activity';
+      return '-';
   }
 };
 
-export const iconForPetActivity = (activity: PetActivity) => {
+export const iconForPetActivity = (
+  activity?: PetActivity | null
+): string | undefined => {
   switch (activity) {
     case 'pee':
       return '🌊';
